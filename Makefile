@@ -1,10 +1,14 @@
 PROGRAM = crc32
 .PHONY: all clean install
 
+CC = CLANG
+CFLAGS = -static-libgcc -fcolor-diagnostics --target=x86_64-w64-mingw -std=c11
+SRC = main.c
+
 all: $(PROGRAM)
 
-$(PROGRAM): main.c
-	$(CC) -o $@ -Wall -Winline -std=c99 $(CFLAGS) $(LDFLAGS) $^
+$(PROGRAM): $(SRC)
+	$(CC) -o $@ -Wall -Winline -std=c99 $(CFLAGS) $(LDFLAGS) $(SRC)
 
 clean:
 	-rm -f $(PROGRAM)
